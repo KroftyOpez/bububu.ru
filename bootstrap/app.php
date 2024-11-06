@@ -10,9 +10,10 @@ return Application::configure(basePath: dirname(__DIR__))
         api: __DIR__.'/../routes/api.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
+        apiPrefix: 'api',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->redirectTo( fn () => throw new \App\Exceptions\ApiException('Unauthorized', 401));
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
