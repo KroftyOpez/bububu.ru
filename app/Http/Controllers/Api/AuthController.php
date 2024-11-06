@@ -33,6 +33,7 @@ class AuthController extends Controller
 
         // Генерирация токена
         $user->api_token = Hash::make(Str::random(60));
+        $user->save();
 
         //Ответ
         return response()->json([
